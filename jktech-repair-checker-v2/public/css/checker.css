@@ -1,0 +1,376 @@
+/* JK Tech Repair Price Checker V2 — Public Styles */
+:root {
+    --jkrc-blue-deep:   #1b3f8b;
+    --jkrc-blue-mid:    #2369b1;
+    --jkrc-blue-accent: #2da5de;
+    --jkrc-blue-light:  #339cd6;
+    --jkrc-text:        #1d1d1b;
+    --jkrc-muted:       #5a6475;
+    --jkrc-bg-light:    #f4f7fb;
+    --jkrc-white:       #ffffff;
+    --jkrc-border:      #dce4f0;
+    --jkrc-radius:      12px;
+    --jkrc-radius-sm:   8px;
+    --jkrc-shadow:      0 4px 24px rgba(27,63,139,0.10);
+    --jkrc-shadow-hov:  0 8px 32px rgba(27,63,139,0.18);
+    --jkrc-transition:  all 0.25s ease;
+    --jkrc-success:     #0f6e56;
+    --jkrc-success-bg:  #e1f5ee;
+    --jkrc-error:       #c0392b;
+    --jkrc-error-bg:    #fff0ee;
+}
+
+.jkrc-checker-wrapper { max-width: 960px; margin: 0 auto; padding: 0 0 40px; box-sizing: border-box; font-family: 'Inter Tight', 'Inter', -apple-system, sans-serif; }
+
+/* ── STEPS INDICATOR ── */
+.jkrc-steps-header { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 40px; flex-wrap: nowrap; }
+.jkrc-step-item { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+.jkrc-step-circle { width: 34px; height: 34px; border-radius: 50%; background: var(--jkrc-border); color: var(--jkrc-muted); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; transition: var(--jkrc-transition); border: 2px solid var(--jkrc-border); }
+.jkrc-step-circle.active { background: var(--jkrc-blue-accent); color: #fff; border-color: var(--jkrc-blue-accent); box-shadow: 0 0 0 4px rgba(45,165,222,0.18); }
+.jkrc-step-circle.done { background: var(--jkrc-blue-deep); color: #fff; border-color: var(--jkrc-blue-deep); }
+.jkrc-step-label { font-size: 12px; font-weight: 600; color: var(--jkrc-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: var(--jkrc-transition); }
+.jkrc-step-label.active { color: var(--jkrc-blue-accent); }
+.jkrc-step-label.done { color: var(--jkrc-blue-deep); }
+.jkrc-step-connector { flex: 1 1 auto; min-width: 12px; max-width: 40px; height: 2px; background: var(--jkrc-border); margin: 0 4px; align-self: center; transition: var(--jkrc-transition); }
+.jkrc-step-connector.done { background: var(--jkrc-blue-deep); }
+
+/* ── LABELS & TITLES ── */
+.jkrc-section-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--jkrc-blue-accent); margin-bottom: 12px; }
+.jkrc-selection-title { font-size: 22px; font-weight: 800; color: var(--jkrc-blue-deep); margin-bottom: 20px; line-height: 1.2; }
+
+/* ── DEVICE CARDS ── */
+.jkrc-cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 32px; }
+.jkrc-option-card { background: var(--jkrc-white); border: 2px solid var(--jkrc-border); border-radius: var(--jkrc-radius); padding: 20px 14px; text-align: center; cursor: pointer; transition: var(--jkrc-transition); display: flex; flex-direction: column; align-items: center; gap: 10px; user-select: none; }
+.jkrc-option-card:hover { border-color: var(--jkrc-blue-accent); box-shadow: var(--jkrc-shadow-hov); transform: translateY(-2px); }
+.jkrc-option-card.selected { border-color: var(--jkrc-blue-deep); background: linear-gradient(135deg, #e8f0fb 0%, #f0f7ff 100%); }
+.jkrc-option-card .jkrc-icon { font-size: 28px; line-height: 1; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+.jkrc-option-card .jkrc-icon svg { width: 36px; height: 36px; display: block; }
+.jkrc-option-card .jkrc-icon img { width: 36px; height: 36px; object-fit: contain; display: block; }
+.jkrc-option-card .jkrc-card-label { font-size: 13px; font-weight: 700; color: var(--jkrc-text); line-height: 1.3; }
+
+/* ── PILLS ── */
+.jkrc-pill-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+.jkrc-pill { padding: 9px 18px; border-radius: 100px; border: 2px solid var(--jkrc-border); background: var(--jkrc-white); font-size: 13px; font-weight: 600; color: var(--jkrc-muted); cursor: pointer; transition: var(--jkrc-transition); user-select: none; }
+.jkrc-pill:hover { border-color: var(--jkrc-blue-accent); color: var(--jkrc-blue-accent); }
+.jkrc-pill.selected { background: var(--jkrc-blue-deep); border-color: var(--jkrc-blue-deep); color: #fff; }
+
+/* ── STEP VISIBILITY ── */
+.jkrc-step-section { display: none; animation: jkrcFadeIn 0.3s ease; }
+.jkrc-step-section.jkrc-visible { display: block; }
+@keyframes jkrcFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── PRICE TABLE ── */
+.jkrc-price-table-wrapper { background: var(--jkrc-white); border-radius: var(--jkrc-radius); box-shadow: var(--jkrc-shadow); overflow: hidden; margin-top: 8px; }
+.jkrc-price-table-header { background: linear-gradient(135deg, var(--jkrc-blue-deep) 0%, var(--jkrc-blue-mid) 100%); padding: 20px 28px; }
+.jkrc-price-table-header h3 { color: #ffffff !important; font-size: 15px !important; font-weight: 700; margin: 0 0 4px; line-height: 1.3; }
+.jkrc-price-table-header span { color: rgba(255,255,255,0.75); font-size: 13px; }
+.jkrc-price-table { width: 100%; border-collapse: collapse; }
+.jkrc-price-table th { background: var(--jkrc-bg-light); padding: 11px 20px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--jkrc-muted); border-bottom: 1px solid var(--jkrc-border); }
+.jkrc-price-table td { padding: 14px 20px; font-size: 14px; border-bottom: 1px solid var(--jkrc-border); vertical-align: middle; }
+.jkrc-price-table tr:last-child td { border-bottom: none; }
+.jkrc-price-table tr:hover td { background: var(--jkrc-bg-light); }
+.jkrc-repair-name { font-weight: 600; color: var(--jkrc-text); }
+.jkrc-repair-note { font-size: 12px; color: var(--jkrc-muted); margin-top: 3px; }
+.jkrc-price-badge { display: inline-block; background: linear-gradient(135deg, var(--jkrc-blue-accent), var(--jkrc-blue-deep)); color: #fff; font-weight: 700; font-size: 14px; padding: 5px 14px; border-radius: 100px; white-space: nowrap; }
+.jkrc-contact-price { color: var(--jkrc-blue-accent); font-weight: 700; text-decoration: none; }
+.jkrc-contact-price:hover { text-decoration: underline; }
+.jkrc-tier-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; margin-left: 8px; vertical-align: middle; }
+.jkrc-tier-standard { background: #e8f0fb; color: #2369b1; }
+.jkrc-tier-oem      { background: #e6f7ff; color: #0077b6; }
+.jkrc-tier-original { background: #fff3e0; color: #e65100; }
+
+/* ── BOOK THIS REPAIR BUTTON (in table) ── */
+.jkrc-book-cell { text-align: right; white-space: nowrap; width: 170px; }
+.jkrc-book-repair-btn { display: inline-flex; align-items: center; gap: 5px; background: var(--jkrc-blue-deep); color: #fff; border: none; border-radius: 100px; font-size: 12px; font-weight: 600; padding: 7px 16px; cursor: pointer; transition: var(--jkrc-transition); text-decoration: none; font-family: inherit; white-space: nowrap; }
+.jkrc-book-repair-btn:hover { background: var(--jkrc-blue-accent); transform: translateY(-1px); }
+.jkrc-book-repair-btn.jkrc-book-contact { background: transparent; color: var(--jkrc-blue-accent); border: 2px solid var(--jkrc-blue-accent); }
+.jkrc-book-repair-btn.jkrc-book-contact:hover { background: var(--jkrc-blue-accent); color: #fff; }
+
+/* ── STEP 4 ACTIONS ── */
+.jkrc-step4-actions { display: flex; align-items: center; gap: 20px; margin-top: 20px; flex-wrap: wrap; }
+.jkrc-contact-link { font-size: 13px; color: var(--jkrc-muted); text-decoration: none; transition: var(--jkrc-transition); }
+.jkrc-contact-link:hover { color: var(--jkrc-blue-accent); }
+
+/* ── BOTTOM NOTE ── */
+.jkrc-bottom-note { margin-top: 20px; padding: 14px 18px; background: var(--jkrc-white); border-radius: var(--jkrc-radius-sm); border-left: 4px solid var(--jkrc-blue-accent); font-size: 13px; color: var(--jkrc-muted); line-height: 1.6; }
+
+/* ── BACK + RESET BUTTONS ── */
+.jkrc-back-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: none; color: var(--jkrc-muted); font-size: 13px; font-weight: 600; cursor: pointer; padding: 6px 0; margin-bottom: 20px; transition: var(--jkrc-transition); font-family: inherit; }
+.jkrc-back-btn:hover { color: var(--jkrc-blue-deep); }
+.jkrc-reset-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: 2px solid var(--jkrc-border); color: var(--jkrc-muted); font-size: 13px; font-weight: 600; cursor: pointer; padding: 8px 18px; border-radius: 100px; transition: var(--jkrc-transition); font-family: inherit; }
+.jkrc-reset-btn:hover { border-color: var(--jkrc-blue-accent); color: var(--jkrc-blue-accent); }
+
+/* ── STEP 5: BOOKING SUMMARY STRIP ── */
+.jkrc-booking-summary { background: linear-gradient(135deg, #e8f0fb 0%, #f0f7ff 100%); border: 1px solid var(--jkrc-border); border-radius: var(--jkrc-radius-sm); padding: 14px 18px; margin-bottom: 28px; }
+.jkrc-summary-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--jkrc-blue-accent); margin-bottom: 6px; }
+.jkrc-summary-content { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 14px; font-weight: 600; color: var(--jkrc-blue-deep); }
+.jkrc-summary-sep { color: var(--jkrc-border); font-weight: 400; }
+.jkrc-summary-price { background: linear-gradient(135deg, var(--jkrc-blue-accent), var(--jkrc-blue-deep)); color: #fff; padding: 3px 12px; border-radius: 100px; font-size: 13px; }
+
+/* ── BOOKING FORM ── */
+.jkrc-booking-form { background: var(--jkrc-white); border: 1px solid var(--jkrc-border); border-radius: var(--jkrc-radius); padding: 32px; box-shadow: var(--jkrc-shadow); }
+
+.jkrc-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.jkrc-form-group { margin-bottom: 18px; }
+
+.jkrc-form-group label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--jkrc-muted); margin-bottom: 6px; }
+
+.jkrc-required { color: #e74c3c; }
+
+.jkrc-form-group input,
+.jkrc-form-group select,
+.jkrc-form-group textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--jkrc-border);
+    border-radius: var(--jkrc-radius-sm);
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--jkrc-text);
+    background: var(--jkrc-white);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+}
+
+.jkrc-form-group input:focus,
+.jkrc-form-group select:focus,
+.jkrc-form-group textarea:focus {
+    border-color: var(--jkrc-blue-accent);
+    box-shadow: 0 0 0 3px rgba(45,165,222,0.12);
+}
+
+.jkrc-form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6475' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+}
+
+.jkrc-form-group input[type="date"] { cursor: pointer; }
+
+.jkrc-form-group textarea { resize: vertical; min-height: 90px; }
+
+/* Form error */
+.jkrc-form-error { background: var(--jkrc-error-bg); color: var(--jkrc-error); border: 1px solid #f5c6c2; border-radius: var(--jkrc-radius-sm); padding: 12px 16px; font-size: 13px; font-weight: 500; margin-bottom: 16px; }
+
+/* Submit button */
+.jkrc-submit-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #2da5de 0%, #1b3f8b 100%); color: #fff; border: none; border-radius: var(--jkrc-radius-sm); font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer; transition: opacity 0.2s ease; letter-spacing: 0.2px; margin-top: 4px; }
+.jkrc-submit-btn:hover:not(:disabled) { opacity: 0.88; }
+.jkrc-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Disclaimer */
+.jkrc-form-disclaimer { font-size: 12px; color: var(--jkrc-muted); text-align: center; margin-top: 14px; line-height: 1.5; }
+
+/* ── SUCCESS MESSAGE ── */
+.jkrc-booking-success { background: var(--jkrc-success-bg); border: 1px solid #b2dece; border-radius: var(--jkrc-radius); padding: 40px 32px; text-align: center; }
+.jkrc-success-icon { width: 56px; height: 56px; background: var(--jkrc-success); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 20px; }
+.jkrc-booking-success h3 { font-size: 20px; font-weight: 700; color: var(--jkrc-success); margin-bottom: 12px; }
+.jkrc-booking-success p { font-size: 14px; color: #2d6a5a; line-height: 1.7; max-width: 480px; margin: 0 auto 24px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+    .jkrc-cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .jkrc-form-row { grid-template-columns: 1fr; gap: 0; }
+    .jkrc-booking-form { padding: 24px 18px; }
+    .jkrc-book-cell { width: auto; }
+    .jkrc-book-repair-btn { font-size: 11px; padding: 6px 12px; }
+    .jkrc-price-table th:last-child { display: none; }
+}
+
+@media (max-width: 640px) {
+    .jkrc-selection-title { font-size: 18px; }
+    .jkrc-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .jkrc-option-card { padding: 16px 10px; }
+    .jkrc-option-card .jkrc-icon { font-size: 22px; }
+    .jkrc-option-card .jkrc-card-label { font-size: 12px; }
+    .jkrc-step-label { display: none; }
+    .jkrc-step-connector { flex: 0 0 14px; }
+    .jkrc-price-table th, .jkrc-price-table td { padding: 10px 12px; font-size: 13px; }
+    .jkrc-price-table-header { padding: 16px 18px; }
+    .jkrc-price-badge { font-size: 13px; padding: 4px 10px; }
+    .jkrc-summary-content { font-size: 13px; }
+    .jkrc-step4-actions { flex-direction: column; align-items: flex-start; gap: 12px; }
+    /* Stack repair name and book button on mobile */
+    .jkrc-price-table td.jkrc-book-cell { display: block; padding-top: 0; padding-bottom: 12px; }
+    .jkrc-price-table td:first-child { padding-bottom: 4px; }
+}
+
+/* ── MULTI-SELECT CHECKBOXES ── */
+.jkrc-check-cell {
+    width: 36px !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    padding: 14px 8px !important;
+}
+
+.jkrc-check-label {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+}
+
+.jkrc-check-label input[type="checkbox"] {
+    position: absolute !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+.jkrc-check-box {
+    width: 18px !important;
+    height: 18px !important;
+    border: 2px solid var(--jkrc-border) !important;
+    border-radius: 4px !important;
+    background: var(--jkrc-white) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: var(--jkrc-transition) !important;
+    flex-shrink: 0 !important;
+}
+
+.jkrc-check-label input:checked + .jkrc-check-box {
+    background: var(--jkrc-blue-deep) !important;
+    border-color: var(--jkrc-blue-deep) !important;
+}
+
+.jkrc-check-label input:checked + .jkrc-check-box::after {
+    content: '' !important;
+    width: 5px !important;
+    height: 9px !important;
+    border: 2px solid #fff !important;
+    border-top: none !important;
+    border-left: none !important;
+    transform: rotate(45deg) translateY(-1px) !important;
+    display: block !important;
+}
+
+/* Selected row highlight */
+.jkrc-price-table tr.jkrc-row-selected td {
+    background: #e8f0fb !important;
+}
+.jkrc-price-table tr.jkrc-row-selected .jkrc-check-box {
+    background: var(--jkrc-blue-deep) !important;
+    border-color: var(--jkrc-blue-deep) !important;
+}
+
+/* ── BOOK SELECTED BAR ── */
+.jkrc-book-selected-bar {
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+    padding: 16px 20px !important;
+    background: var(--jkrc-bg-light) !important;
+    border-top: 1px solid var(--jkrc-border) !important;
+    flex-wrap: wrap !important;
+}
+
+.jkrc-book-selected-btn {
+    padding: 11px 24px !important;
+    background: linear-gradient(135deg, #2da5de 0%, #1b3f8b 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 100px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    font-family: inherit !important;
+    cursor: pointer !important;
+    transition: opacity 0.2s ease !important;
+    white-space: nowrap !important;
+}
+
+.jkrc-book-selected-btn:hover:not(:disabled) {
+    opacity: 0.88 !important;
+}
+
+.jkrc-book-selected-btn:disabled {
+    background: var(--jkrc-border) !important;
+    color: var(--jkrc-muted) !important;
+    cursor: not-allowed !important;
+    opacity: 1 !important;
+}
+
+.jkrc-select-hint {
+    font-size: 12px !important;
+    color: var(--jkrc-muted) !important;
+}
+
+/* ── BOOKING SUMMARY — multi repair list ── */
+.jkrc-summary-device-row {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: var(--jkrc-blue-deep) !important;
+    margin-bottom: 2px !important;
+}
+
+.jkrc-summary-repairs-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    margin-top: 4px !important;
+}
+
+.jkrc-summary-repair-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    font-size: 13px !important;
+    padding: 6px 10px !important;
+    background: rgba(255,255,255,0.7) !important;
+    border-radius: 6px !important;
+    border: 1px solid rgba(27,63,139,0.1) !important;
+}
+
+.jkrc-summary-repair-name {
+    color: var(--jkrc-text) !important;
+    font-weight: 500 !important;
+}
+
+.jkrc-summary-repair-name em {
+    font-style: normal !important;
+    font-size: 11px !important;
+    color: var(--jkrc-muted) !important;
+    margin-left: 4px !important;
+}
+
+.jkrc-summary-repair-price {
+    background: linear-gradient(135deg, var(--jkrc-blue-accent), var(--jkrc-blue-deep)) !important;
+    color: #fff !important;
+    padding: 2px 10px !important;
+    border-radius: 100px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+    .jkrc-book-selected-bar {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding: 12px !important;
+    }
+    .jkrc-book-selected-btn {
+        width: 100% !important;
+        text-align: center !important;
+    }
+}
+
+/* ── DYNAMIC TIER BADGE COLORS (matches admin palette) ── */
+.jkrc-tier-badge.jkrc-tier-idx-0 { background: #e8f0fb; color: #2369b1; }
+.jkrc-tier-badge.jkrc-tier-idx-1 { background: #e6f7ff; color: #0077b6; }
+.jkrc-tier-badge.jkrc-tier-idx-2 { background: #fff3e0; color: #e65100; }
+.jkrc-tier-badge.jkrc-tier-idx-3 { background: #f0fff4; color: #0a875a; }
+.jkrc-tier-badge.jkrc-tier-idx-4 { background: #f9f0ff; color: #7b2d8b; }
+.jkrc-tier-badge.jkrc-tier-idx-5 { background: #fffde7; color: #b8860b; }
+.jkrc-tier-badge.jkrc-tier-idx-6 { background: #fff0ee; color: #c0392b; }
+.jkrc-tier-badge.jkrc-tier-idx-7 { background: #e8f0fb; color: #1b3f8b; }
